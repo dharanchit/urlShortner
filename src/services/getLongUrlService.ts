@@ -2,8 +2,7 @@ import longStringInDb from "../generators/longStringInDb";
 import Redis from "../utils/redisClient";
 
 const getLongUrlService = async (shortenURL: string) => {
-  const redis = Redis();
-  await redis.connect();
+  const redis = await Redis();
   let data: string | null = "";
   data = await redis.get(String(shortenURL));
   if (data) {

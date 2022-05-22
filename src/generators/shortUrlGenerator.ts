@@ -5,8 +5,7 @@ const shortUrlGenerator = async (url: string, hostUrl: string) => {
     try {
         const dbClient = dbConnection();
         await dbClient.connect();
-        const redis = Redis();
-        await redis.connect();
+        const redis = await Redis();
         const response = await dbClient.query(`SELECT id FROM urltable ORDER BY id DESC LIMIT(1)`);
         let start = '1';
         if (response.rowCount > 0) {
